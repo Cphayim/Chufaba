@@ -1,0 +1,85 @@
+/*
+ * @Author: Cphayim 
+ * @Date: 2017-04-15 16:22:02 
+ * @Last Modified by: Cphayim
+ * @Last Modified time: 2017-04-16 19:19:16
+ */
+
+
+/* 动画延迟 */
+
+.animate-delay {
+    animation-delay: 1s;
+}
+
+
+/* 遮罩层 */
+
+.overlay {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+/* 引导页样式 */
+#guide {
+    /* 调用 GPU 硬件加速 */
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    font-weight: 400;
+    &.rotate-fade-out {
+        animation: rotateFadeOut 1.2s both;
+    }
+    /* 轮播容器 */
+    .slider {
+        height: 100%;
+        color: #fff;
+        transform: translate3d(0, 0, 0);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('../img/guide-bg.png');
+    }
+    .slider-slide {
+        padding: 50vh 15vw 10vh;
+        text-align: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        @for $i from 1 to 5 {
+            &.slide-#{$i} {
+                background-image: url('../img/guide#{$i}.png');
+            }
+        }
+        .button-start{
+            margin-top: 10vh;
+            padding-left: 20%;
+            padding-right: 20%;
+            border-color: #67c99c;
+            background-color: #67c99c;
+            transition: all 0.4s;
+            color: #fff;
+            &.activated {
+                border-color: #319f6c;
+                background-color: #319f6c;
+            }
+        }
+    }
+    /* 小圆点 */
+    .slider-pager-page {
+        color: #fff;
+    }
+}
+
+@keyframes rotateFadeOut {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(0.5);
+        opacity: 0.3;
+    }
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}

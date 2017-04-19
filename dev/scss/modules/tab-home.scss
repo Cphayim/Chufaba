@@ -1,0 +1,34 @@
+#home-title {
+    .button-bar {
+        position: relative;
+        padding: 0;
+        text-align: center;
+        font-weight: normal;
+        a {
+            display: inline-block;
+            width: 33%;
+            line-height: 34px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        a.active {
+            color: #fff;
+            font-size: 15px;
+        }
+        .slider-block {
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 33.3%;
+            height: 5px;
+            background-color: $greenMainColor;
+            transition: all 0.2s;
+        }
+    }
+}
+
+#home-slider {
+    // .slider {
+        height: 100%;
+    // }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <link rel="manifest" href="manifest.json">
+    <title>Main</title>
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+    <link href="css/ionic.app.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-image: url('img/guide-bg.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <script src="lib/ionic/js/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+
+    <script src="js/ionic.app.min.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+</head>
+
+<body ng-app="Chufaba">
+    <!-- 导航栏 -->
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+    <!-- 导航视图 -->
+    <ion-nav-view></ion-nav-view>
+</body>
+
+</html>

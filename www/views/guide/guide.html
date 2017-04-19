@@ -1,0 +1,16 @@
+<!-- App 引导页 -->
+<ion-view id="guide" hide-nav-bar="true" ng-class="{'rotate-fade-out':out}">
+    <ion-slide-box active-slide="0" on-slide-changed="changeBC($index)" class="slider-{{index}}">
+        <ion-slide class="slide-1">
+        </ion-slide>
+        <ion-slide class="slide-2">
+        </ion-slide>
+        <ion-slide class="slide-3">
+        </ion-slide>
+        <ion-slide class="slide-4">
+            <div>
+                <button ng-click="go()" class="button button-start">立即体验</button>
+            </div>
+        </ion-slide>
+    </ion-slide-box>
+</ion-view>
