@@ -2,7 +2,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-15 19:51:57 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-18 21:34:56
+ * @Last Modified time: 2017-04-20 22:58:36
  */
 
 'use strict';
@@ -20,10 +20,10 @@ angular.module('Chufaba').controller('guideController', ['$scope', '$ionicPlatfo
             // $state.go('tab.dash');
             $scope.out = true;
             $timeout(() => {
-                // $state.go('tab.home');
+                   $state.go('tab.home');
             }, 1000);
         }
         // 设置 已首次打开过 的 localStorage
-        localStorage['guided'] = true;
+        // localStorage['guided'] = true;
     }
 ]);

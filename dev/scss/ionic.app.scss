@@ -23,6 +23,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 $darkMainColor: #21272f;
 $greenMainColor:#67c99c;
+
+// 全局导航栏样式
 .bar.bar-header{
     background-color: $darkMainColor;
     color: #fff;
@@ -30,6 +32,21 @@ $greenMainColor:#67c99c;
         color: #fff;
     }
 }
+.bar.bar-stable{
+    border-color: #21272f;
+    border-width:0;
+    background-image: none;
+    .title{
+        bottom:0;
+        height: 44px;
+    }
+}
+// 全局请求等待 svg 样式
+.spinner{
+    stroke: $greenMainColor;
+    fill:$greenMainColor;
+}
+
 @import "dev/scss/modules/guide";
 @import "dev/scss/modules/tab-home";
 

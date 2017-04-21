@@ -1,13 +1,16 @@
 #home-title {
-    .button-bar {
+    .title-tab {
         position: relative;
         padding: 0;
         text-align: center;
         font-weight: normal;
+        font-size: 0;//去间距
+        line-height: 0;
         a {
+            // float: left;
             display: inline-block;
             width: 33%;
-            line-height: 34px;
+            line-height: 44px;
             font-size: 14px;
             color: #aaa;
         }
@@ -17,7 +20,7 @@
         }
         .slider-block {
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 33.3%;
             height: 5px;
@@ -28,7 +31,49 @@
 }
 
 #home-slider {
-    // .slider {
-        height: 100%;
-    // }
+    height: 100%;
+    
+    // 精选
+    .good{
+        .top-banner{
+            position: relative;top:-1px;line-height: 0;
+            img{
+                width: 100%;
+            }
+        }
+        .good-item{
+            position: relative;
+            padding: 8px;
+            a{
+                display: block;
+                height: 30vh;
+                background-size: cover;
+                background-position: 50% 50%;
+                border-radius: 2% 2%;
+            }
+            .info{
+                position: absolute;top: 55%;left: 50%;
+                transform: translate(-50%,-50%);
+                text-align: center;
+                h3,p{
+                    margin: 0;
+                    padding: 4px 0;
+                    color: #fff;
+                    text-shadow: 1px 1px #000;
+                }
+                h3{
+                    font-size: 5vw;
+                }
+                p{
+                    font-size: 3vw;
+                }
+                img{
+                    margin-top: 10px;
+                    display: inline-block;
+                    width: 8vw;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
 }

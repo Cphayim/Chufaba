@@ -1,4 +1,4 @@
-<ion-view view-title="Home" ng-controller="HomeController">
+<ion-view view-title="Home">
     <ion-nav-buttons side="primary">
         <button class="button button-icon ion ion-ios-personadd-outline" ng-click="openPopoverView($event)"></button>
     </ion-nav-buttons>
@@ -6,8 +6,8 @@
         <button class="button button-icon ion ion-ios-search" ng-click="openPopoverView($event)"></button>
     </ion-nav-buttons>
     <ion-nav-title>
-        <div id="home-title" class="bar bar-header">
-            <div class="button-bar">
+        <div id="home-title" >
+            <div class="title-tab">
                 <a ng-class="{active:activeItem == 0}" ng-click="setActive(0)">关注</a>
                 <a ng-class="{active:activeItem == 1}" ng-click="setActive(1)">精选</a>
                 <a ng-class="{active:activeItem == 2}" ng-click="setActive(2)">热门</a>
@@ -18,7 +18,8 @@
     <!-- 这样写竖向滚动会出问题，ion-content 应该定义在轮播子项内 -->
     <!--<ion-content>-->
     <ion-slide-box id="home-slider" show-pager="false" active-slide="1" on-slide-changed="setActive($index)">
-        <ion-slide>
+        
+        <ion-slide class="attention">
             <!-- 关注 -->
             <ion-content>
                 <ion-list>
@@ -26,24 +27,40 @@
                 </ion-list>
             </ion-content>
         </ion-slide>
-        <ion-slide>
+        
+        <ion-slide class="good">
             <!-- 精选 -->
             <ion-content>
-                <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
-                <ion-list>
-                    <ion-item ng-repeat="item in items" ng-bind="item"></ion-item>
-                </ion-list>
+                <ion-refresher spinner="bubbles" pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+                <!-- 精选头图 -->
+                <div class="top-banner">
+                	<img ng-src="{{data.good.banner.image}}"/>
+                </div>
+                <!-- 精选项 -->
+                <div class="good-item">
+                	<a href="" ng-click="showToast()" style="background-image: url(http://img.chufaba.me/usercover_6CC51BCD-D919-4DF7-BFA8-A993611B7171.jpg!375);">
+                		<div class="info">
+                			<h3>春之游</h3>
+                			<p>海口、文昌、万宁、陵水、三亚</p>
+                			<img src="http://cfbassets.b0.upaiyun.com/assets/v2/head.png"/>
+                		</div>
+                	</a>
+                </div>
+                <ion-infinite-scroll spinner="lines" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
         </ion-slide>
-        <ion-slide>
+        
+        <ion-slide class="hot">
             <!-- 热门 -->
             <ion-content>
-                <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+                <ion-refresher spinner="bubbles" pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
                 <ion-list>
                     <ion-item ng-repeat="item in items" ng-bind="item"></ion-item>
                 </ion-list>
+                <ion-infinite-scroll spinner="lines" on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
             </ion-content>
         </ion-slide>
+        
     </ion-slide-box>
     <!--</ion-content>-->
 </ion-view>

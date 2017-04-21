@@ -21,7 +21,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
             views: {
                 'tab-home': {
                     templateUrl: 'views/tabs/tab-home.html',
-                    // controller: 'DashCtrl'
+                    controller: 'HomeController' 
                 }
             }
         }).state('tab.chats', {
