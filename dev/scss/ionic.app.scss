@@ -18,35 +18,58 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
-
 @import "www/lib/ionic/scss/ionic";
-
 $darkMainColor: #21272f;
 $greenMainColor:#67c99c;
-
 // 全局导航栏样式
-.bar.bar-header{
+.bar.bar-header {
     background-color: $darkMainColor;
     color: #fff;
-    .button.button-icon{
+    .button.button-icon {
         color: #fff;
     }
 }
-.bar.bar-stable{
+
+.bar.bar-stable {
     border-color: #21272f;
-    border-width:0;
+    border-width: 0;
     background-image: none;
-    .title{
-        bottom:0;
+    &.transparent {
+        background: none;
+    }
+    .title {
+        bottom: 0;
         height: 44px;
+        color: #fff;
+    }
+    .button.button-clear {
+        color: #fff;
     }
 }
+
 // 全局请求等待 svg 样式
-.spinner{
+.spinner {
     stroke: $greenMainColor;
-    fill:$greenMainColor;
+    fill: $greenMainColor;
+}
+
+.back-wrap {
+    position: absolute;
+    z-index: 20;
+    .back {
+        display: block;
+        height: 44px;
+        padding: 5px 10px;
+        background-color: #333;
+        color: #fff;
+        .ion.ion-chevron-left {
+            line-height: 34px;
+            &::before {
+                font-size: 28px;
+            }
+        }
+    }
 }
 
 @import "dev/scss/modules/guide";
 @import "dev/scss/modules/tab-home";
-

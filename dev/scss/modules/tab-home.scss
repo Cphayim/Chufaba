@@ -26,6 +26,7 @@
             height: 5px;
             background-color: $greenMainColor;
             transition: all 0.2s;
+            // transform:translateX(100%);
         }
     }
 }
@@ -43,16 +44,20 @@
         }
         .good-item{
             position: relative;
-            padding: 8px;
+            margin: 8px;
             a{
-                display: block;
+                display: block;overflow: hidden;
                 height: 30vh;
                 background-size: cover;
                 background-position: 50% 50%;
                 border-radius: 2% 2%;
             }
+            .overlay{
+                width: 100%;height: 100%;background-color: rgba(0, 0, 0, 0.2);
+            }
             .info{
                 position: absolute;top: 55%;left: 50%;
+                width: 100%;
                 transform: translate(-50%,-50%);
                 text-align: center;
                 h3,p{
@@ -70,8 +75,9 @@
                 img{
                     margin-top: 10px;
                     display: inline-block;
-                    width: 8vw;
+                    width: 9vw;
                     border-radius: 50%;
+                    border: 3px solid rgba(255, 255, 255, 0.5)
                 }
             }
         }

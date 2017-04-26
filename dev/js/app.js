@@ -2,7 +2,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-15 19:53:57 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-20 23:40:00
+ * @Last Modified time: 2017-04-24 23:24:37
  */
 angular.module('Chufaba', ['ionic','ngCordova', 'myRouter', 'starter.controllers', 'starter.services'])
 .run(['$ionicPlatform', function ($ionicPlatform) {
@@ -42,5 +42,7 @@ angular.module('Chufaba', ['ionic','ngCordova', 'myRouter', 'starter.controllers
 
         $ionicConfigProvider.platform.ios.views.transition('ios');    /*切换效果*/
         $ionicConfigProvider.platform.android.views.transition('android');
+        $ionicConfigProvider.backButton.previousTitleText(false);    /*去掉返回  文字*/
+        $ionicConfigProvider.backButton.text(' ');
     }
 ]);

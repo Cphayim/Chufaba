@@ -1,8 +1,9 @@
 /*
+ * 前端路由模块
  * @Author: Cphayim 
  * @Date: 2017-04-15 19:52:03 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-15 22:04:50
+ * @Last Modified time: 2017-04-24 22:57:35
  */
 
 'use strict';
@@ -15,13 +16,22 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
         }).state('tab', {
             url: '/tab',
             abstract: true,
-            templateUrl: 'views/tabs.html'
+            templateUrl: 'views/tabs.html',
+            controller:'TabsController'
         }).state('tab.home', {
             url: '/home',
             views: {
                 'tab-home': {
                     templateUrl: 'views/tabs/tab-home.html',
-                    controller: 'HomeController' 
+                    controller: 'HomeController'
+                }
+            }
+        }).state('tab.good-detail', {
+            url: '/good-detail:id',
+            views: {
+                'tab-home': {
+                    templateUrl: 'views/detail/good.html',
+                    controller: 'GoodDetailController'
                 }
             }
         }).state('tab.chats', {
@@ -48,7 +58,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                     controller: 'AccountCtrl'
                 }
             }
-        });
+        })
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise(localStorage['guided'] ? '/tab/home' : '/guide');
     }
