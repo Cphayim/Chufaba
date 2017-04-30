@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-15 19:52:03 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-24 22:57:35
+ * @Last Modified time: 2017-04-30 23:08:26
  */
 
 'use strict';
@@ -19,6 +19,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
             templateUrl: 'views/tabs.html',
             controller:'TabsController'
         }).state('tab.home', {
+            // 主页
             url: '/home',
             views: {
                 'tab-home': {
@@ -27,6 +28,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                 }
             }
         }).state('tab.good-detail', {
+            // 精选详情
             url: '/good-detail:id',
             views: {
                 'tab-home': {
@@ -34,28 +36,31 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                     controller: 'GoodDetailController'
                 }
             }
-        }).state('tab.chats', {
-            url: '/chats',
+        }).state('tab.destination', {
+            // 目的地
+            url: '/destination',
             views: {
-                'tab-chats': {
-                    templateUrl: 'views/tab-chats.html',
-                    controller: 'ChatsCtrl'
+                'tab-destination': {
+                    templateUrl: 'views/tabs/tab-destination.html',
+                    controller: 'DestinationController'
                 }
             }
-        }).state('tab.chat-detail', {
-            url: '/chats/:chatId',
+        }).state('tab.buy', {
+            // 购买
+            url: '/buy',
             views: {
-                'tab-chats': {
-                    templateUrl: 'views/chat-detail.html',
-                    controller: 'ChatDetailCtrl'
+                'tab-buy': {
+                    templateUrl: 'views/tabs/tab-buy.html',
+                    controller: 'BuyController'
                 }
             }
         }).state('tab.account', {
-            url: '/account',
+            // 我的
+            url: '/me',
             views: {
-                'tab-account': {
-                    templateUrl: 'views/tab-account.html',
-                    controller: 'AccountCtrl'
+                'tab-me': {
+                    templateUrl: 'views/tabs/tab-me.html',
+                    controller: 'MeController'
                 }
             }
         })

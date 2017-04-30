@@ -2,7 +2,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-18 21:33:38 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-24 23:12:36
+ * @Last Modified time: 2017-04-28 13:42:25
  */
 // Home 界面控制器
 angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBoxDelegate', '$cordovaToast', '$http', '$state',
@@ -19,14 +19,13 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
             }
         }
         $scope.homeTab = new HomeTab(1); // 绑定homeTab实例到作用域，默认激活第二个 tab
-
         /**
          * 刷新(下拉刷新/上拉加载)组件类
          * @class RefreshComponent
          */
         class RefreshComponent {
             /**
-             * 构造函数参数说明
+             * 构造器参数说明
              * 传入的对象将被解构赋值
              * @param {Object} {
              *        {Sring}    path          http 请求路径，不包括主机名，默认值 '/product'
@@ -41,14 +40,14 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
                 current = 0,
                 offset = 10,
                 showInfinite = true,
-                loadData
+                loadData = function(){}
             }) {
                 this.path = path;
                 this.current = current;
                 this.offset = offset;
                 this.showInfinite = showInfinite;
                 this.loadData = loadData;
-                this.data = { // 数据挂载容器对象，绑定到视图层
+                this.data = { // 数据容器对象，绑定到视图层
                     items: []
                 }
             }
@@ -72,9 +71,10 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
             }
         }
         // 实例化刷新组件添加到作用域上
+        // 精选列表的刷新组件
         $scope.good = new RefreshComponent({
-            path: '/product/good',
-            loadData: function () {
+            path: '/product/good-list',
+            loadData() {
                 $http({
                     method: 'GET',
                     url: config.serverUrl + this.path,
@@ -84,6 +84,7 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
                     }
                 }).then(resData => {
                     if (resData.data.code && resData.data.items.length > 0) {
+                        // 将新数据合并到数据容器中
                         this.data.items = this.data.items.concat(resData.data.items);
                         this.current += this.offset;
                     } else if (resData.data.code && resData.data.items.length === 0) {
@@ -92,18 +93,15 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
                     } else {
                         $cordovaToast.showShortCenter('数据请求失败，请尝试下拉刷新');
                     }
-                    $scope.$broadcast('scroll.infiniteScrollComplete'); // 发送广播:加载完成
+                    $scope.$broadcast('scroll.infiniteScrollComplete'); // 向子组件发送广播: 加载完成
                 }).catch(resData => {
                     $cordovaToast.showShortCenter('数据请求失败，请检查网络');
                 });
             }
         });
         $scope.good.data.banner = {
+            // 将配置文件中的主题 banner 挂载到数据容器
             image: config.activityPoster
         };
-        $scope.good.goDetail = id => {
-            $state.go('good-detail');
-        }
-
     }
 ]).service('HomeService', []);

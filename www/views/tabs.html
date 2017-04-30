@@ -4,21 +4,82 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <ion-view>
-    <ion-tabs  class="tabs-icon-top tabs-color-active-balanced">
-        <ion-tab title="精选" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/home">
+    <ion-tabs class="tabs-icon-top tabs-color-active-balanced">
+        <ion-tab title="精选" icon-off="ion-ios-flower-outline" icon-on="ion-ios-flower" href="#/tab/home">
             <ion-nav-view name="tab-home"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="目的地" icon-off="ion-ios-location-outline" icon-on="ion-ios-location" href="#/tab/chats">
-            <ion-nav-view name="tab-chats"></ion-nav-view>
+        <ion-tab title="目的地" icon-off="ion-ios-location-outline" icon-on="ion-ios-location" href="#/tab/destination">
+            <ion-nav-view name="tab-destination"></ion-nav-view>
         </ion-tab>
-        <ion-tab icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/account">
-            <ion-nav-view name="tab-account"></ion-nav-view>
+        <ion-tab icon-off="ion-ios-person-outline" icon-on="ion-ios-person" ng-click="loginModal.show()">
         </ion-tab>
-        <ion-tab title="购买" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
-            <ion-nav-view name="tab-account"></ion-nav-view>
+        <ion-tab title="购买" icon-off="ion-ios-cart-outline" icon-on="ion-ios-cart" href="#/tab/buy">
+            <ion-nav-view name="tab-buy"></ion-nav-view>
         </ion-tab>
-        <ion-tab title="我的" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/account">
-            <ion-nav-view name="tab-account"></ion-nav-view>
+        <ion-tab title="我的" icon-off="ion-ios-person-outline" icon-on="ion-ios-person" href="#/tab/me">
+            <ion-nav-view name="tab-me"></ion-nav-view>
         </ion-tab>
     </ion-tabs>
+    <script id="login.html" type="text/ng-template">
+        <!-- 登录/注册 模态框 -->
+        <div class="modal login-modal" ng-controller="loginController">
+            <ion-header-bar class="">
+                <a class="button button-clear button-positive" ng-click="isRegister?toLogin():loginModal.hide()">
+                    <i class="ion" ng-class="{'ion-close-round':!isRegister,'ion-chevron-left':isRegister}"></i>
+                </a>
+                <h1 class="title" ng-bind="isRegister?'注册账户':'登录账户'"></h1>
+                <a ng-if="!isRegister" class="button button-clear button-positive" ng-click="toRegister()">
+                    注册
+                </a>
+            </ion-header-bar>
+            <ion-content>
+                <div class="box-wrap" ng-class="{step:isRegister}">
+                    <div class="login-box box">
+                        <!-- 登录表单 -->
+                        <form novalidate name="loginForm" ng-submit="loginSubmit()">
+                            <label class="item item-input">
+                                <input type="text" name="phone" ng-model="user.phone" pattern="^(13|14|15|18)[0-9]{9}$" required placeholder="手机号码" autocomplete="off" >
+                                <!-- 输入框脏值(input事件)即开始显示当前表单控件验证状态: valid(笑脸)/invalid(哭脸)-->
+                                <i ng-class="{
+                                    'ion-android-sad':loginForm.phone.$invalid&&loginForm.phone.$dirty,
+                                    'ion-android-happy': loginForm.phone.$valid&&loginForm.phone.$dirty
+                                }" 
+                                class="icon"></i>
+                            </label>
+                            <label class="item item-input">
+                                <input type="password" name="password" ng-model="password" required placeholder="密码">
+                                <i ng-class="{
+                                    'ion-android-sad':loginForm.password.$invalid&&loginForm.password.$dirty,
+                                    'ion-android-happy': loginForm.password.$valid&&loginForm.password.$dirty
+                                }" 
+                                class="icon"></i>
+                            </label>
+                            <!-- 输入框首次失焦(blur事件)开始显示未通过的验证提示，每次只显示最上面的一条 -->
+                            <div>
+                                <span>{{password}}</span>
+                                <span>{{$id}}</span>
+                            </div>
+                            <div class="bot">
+                                <input class="button button-block" type="submit" ng-disabled="loginForm.$invalid" value="登录">    
+                            </div>
+                        </form>
+                    </div>
+                    <div class="register-box box">
+                        <!-- 注册表单 -->
+                        <form novalidate name="registerForm" ng-submit="registerSubmit()">
+                            <label class="item item-input">
+                                <input type="text" placeholder="手机号码" >
+                            </label>
+                            <label class="item item-input">
+                                <input type="password" placeholder="密码">
+                            </label>
+                            <div class="bot">
+                                <input class="button button-block" type="submit" ng-disabled="registerForm.$invalid" value="注册">    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </ion-content>
+        </div>
+    </script>
 </ion-view>

@@ -1,0 +1,211 @@
+#good-detail{
+    .back-image{
+        position: absolute;width: 100%;height: 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: auto 42vh;
+        background-color: #111;
+        transform-origin: center top;
+    }
+    ion-content{
+        top:0;
+    }
+    .scroll{
+        padding-top: 40vh;
+    }
+    &>.overlay{
+        position: absolute;
+        width: 100%;height: 100%;
+        background-color: rgba(50, 50, 50, 0.2)
+    }
+    .title-box{
+        position: absolute;top: 0;left: 0;
+        width: 100%;height: 40vh;padding: 15vh 0 5vh;
+        text-align: center;color: #fff;
+        h2{
+            @extend %text-shadow;
+            font-size: 3.2vh;
+            color: #fff;
+        }
+        p{
+            font-size: 1.8vh;
+        }
+        .user{
+            margin-top: 3vh;
+            img{
+                display: inline-block;
+                width: 10vw;
+                border-radius: 50%;
+                border: 2px solid rgba(255, 255, 255, 0.4);
+            }
+            p{}
+        }
+    }
+    .info-wrap{
+        overflow: hidden;
+        position: relative;
+        .fuzzy, .overlay, .info{
+            overflow: hidden;
+            position: absolute;
+            width: 100%;height: 100%;
+        }
+        .fuzzy{
+            @include filter-blur(3px);
+            transform: rotateZ(180deg) rotateY(180deg);
+            background-size: auto 42vh;
+            background-position: 50% 95%;
+        }
+        .overlay{
+            @include filter-blur(2px);
+            background-color: rgba(50, 50, 50, 0.7);
+            transform: scale(1.2);
+        }
+        .info{
+            position: relative;
+            padding: 2vh;
+            span,label{
+                font-size: 1.6vh;color: #fff;
+            }
+            span{
+                float: left;
+                display: block;
+                min-width: 45%;
+            }
+            label{
+                display: inline-block;
+                padding: 0 10px 0 0;
+                border: 1px solid rgba(200, 200, 200, 0.7);
+                border-bottom-left-radius: 15px;
+                border-top-left-radius: 15px;
+                &::before{
+                    display: inline-block;
+                    content: '· ';
+                    padding: 0 5px;
+                    
+                }
+            }
+        }
+    }
+    .detail{
+        background-color: #f2f2f2;
+        color: #333;
+        font-weight: 300;
+        p{
+            margin: 0;
+        }
+        .intro{
+            padding: 15px;
+            font-size: 14px;
+        }
+        .itinerary{
+            min-height: 1000px;
+            margin-left: 25px;
+            // 竖条
+            border-left: 4px solid #ccc;
+            h4,h5,p{
+                margin: 0;
+            }
+            h4,h5{
+                font-size: 2.6vh;
+                color: #666;
+            }
+            p{
+                font-size: 14px;
+            }
+            span{
+                font-size:12px;
+                font-weight: 400;
+            }
+            >div{
+                // border-: 1px solid #666;
+            }
+            >div>div{
+                margin-left: -29px;
+                padding: 10px 20px 10px 50px;
+                border-top: 1px solid #e2e2e2;
+            }
+            .date-box{
+                h4,span{
+                    color: $greenMainColor;
+                }
+                
+            }
+            .location-box{
+                padding: 20px 20px 20px 50px;
+                h4{
+                    position: relative;
+                    margin-left: -50px;
+                    padding-left: 50px;
+                    &::before{
+                        position: absolute;left: 20px;top: 0;
+                        display: block;
+                        content: '.';
+                        width: 14px;height: 14px;
+                        font-size: 12px;line-height: 8px;
+                        text-align: center;
+                        background-color: $greenMainColor;color: #fff;
+                        transform: rotate(45deg);
+                    }
+                }
+                .card-wrap{
+                    margin-left: -50px;
+                    margin-right: -20px;
+                }
+                .card{
+                    margin-bottom: 0;
+                    background-color: #f7f7f7;
+                    border-radius: 5px;
+                    .item-body{
+                        padding: 0;
+                    }
+                    .slider-slide {
+                        height: 40vh;
+                        background-size: cover;
+                        background-position: 50% 50%;
+                        background-repeat: no-repeat;
+                    }
+                    .slider-pager span{
+                        color: #fff;
+                    }
+                    p{
+                        padding: 10px;
+                    }
+                }
+            }
+            .end>div{
+                border: none;
+            }
+            // 圆点记号盒子
+            .flag-box{
+                position: relative;
+                .flag-wrap{
+                    position: absolute;top: 0;left: 17px;
+                    width: 18px;
+                    height: 20px;
+                    .flag-pointer{
+                        position: absolute;top: 10px;left: 0;
+                        width: 20px;height: 20px;
+                        border:2px solid #f2f2f2;
+                        border-radius: 50%;
+                        background-color: $greenMainColor;
+                    }
+                }
+                
+            }
+            .day:first-child>.flag-box>.flag-wrap{
+                background-color: #f2f2f2;
+            }
+            .end>.flag-box{ 
+                .flag-wrap{
+                    top: auto;bottom:0;
+                    background-color: #f2f2f2;
+                    .flag-pointer{
+                        top: -10px;
+                    }
+                }
+            }
+            
+
+        }
+    }
+}

@@ -19,6 +19,7 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+// 全局变量
 $darkMainColor: #21272f;
 $greenMainColor:#67c99c;
 // 全局导航栏样式
@@ -32,6 +33,7 @@ $greenMainColor:#67c99c;
 
 .bar.bar-stable {
     border-color: #21272f;
+    transition: all 0.6s;
     border-width: 0;
     background-image: none;
     &.transparent {
@@ -46,6 +48,11 @@ $greenMainColor:#67c99c;
         color: #fff;
     }
 }
+// 
+.tab-item .icon{
+    font-size: 28px;
+    line-height: 32px;
+}
 
 // 全局请求等待 svg 样式
 .spinner {
@@ -53,23 +60,23 @@ $greenMainColor:#67c99c;
     fill: $greenMainColor;
 }
 
-.back-wrap {
-    position: absolute;
-    z-index: 20;
-    .back {
-        display: block;
-        height: 44px;
-        padding: 5px 10px;
-        background-color: #333;
-        color: #fff;
-        .ion.ion-chevron-left {
-            line-height: 34px;
-            &::before {
-                font-size: 28px;
-            }
-        }
-    }
+// 混合宏定义
+// 模糊处理
+@mixin filter-blur($blur:5px) {
+    -webkit-filter: blur($blur);
+    -moz-filter: blur($blur);
+    -ms-filter: blur($blur);
+    filter: blur($blur);
 }
 
-@import "dev/scss/modules/guide";
-@import "dev/scss/modules/tab-home";
+
+// 占位符定义
+%text-shadow {
+    text-shadow: 1px 1px 1px #333;
+}
+
+// scss 样式模块导入
+@import "dev/scss/modules/guide/guide";
+@import "dev/scss/modules/tabs/tab-home";
+@import "dev/scss/modules/detail/good";
+@import "dev/scss/modules/modal/modal";

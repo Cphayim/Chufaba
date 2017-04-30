@@ -1,8 +1,91 @@
-<ion-view view-title="详情" hide-nav-bar="true">
-    <div class="back-wrap">
-        <a class="back"><i class="ion ion-chevron-left"></i></a>
-    </div>
-    <ion-content style="top:0">
-        <h1>我是详情</h1>
-    </ion-content>
+<ion-view id="good-detail" view-title="">
+    <div class="back-image" style="background-image:url({{detail.data.background_image }});"></div>
+    <!--<ion-content >-->
+    <ion-scroll data-id="{{detail.data.id}}" class="overlay" on-scroll="topImageSize()">
+        <!-- 标题块 -->
+        <div class="title-box">
+            <h2 >{{detail.data.title}}</h2>
+            <p>—— · <span ng-repeat="destination in detail.data.destinations">{{destination.name}} · </span>——</p>
+            <div class="user" data-userid="{{detail.data.user_id}}">
+                <img src="{{detail.data.avatar}}" alt="{{detail.data.username}}">
+                <p>{{detail.data.username}}</p>
+            </div>
+        </div>
+        <!-- 简介信息块 -->
+        <div class="info-wrap">
+            <!-- 镜像倒影模糊层 -->
+            <div class="fuzzy" style="background-image:url({{detail.data.background_image }});"></div>
+            <!-- 半透明覆盖层 -->
+            <div class="overlay"></div>
+            <!-- 信息 -->
+            <div class="info">
+                <div class="clearfix">
+                    <span>出发时间: {{detail.data.departure_date}}</span>
+                    <span>紧凑程度: {{detail.data.compact}}（{{detail.data.duration}}天，{{detail.data.locations}}个地点）</span>
+                    <span>人均花费: ￥{{detail.data.average}}/人</span>
+                    <span>和谁一起: {{detail.data.gowith}}</span>    
+                </div>
+                <div>
+                    <label>{{detail.data.label}}</label>    
+                </div>
+            </div>
+        </div>
+        <!-- 详细块 -->
+        <div class="detail">
+
+            <!-- 介绍 -->
+            <div class="intro">
+                <p>{{detail.data.intro}}</p>
+            </div>
+
+            <!-- 行程 -->
+            <div class="itinerary">
+
+                <!-- 一天的行程，循环 -->
+                <div id="day-{{$index+1}}" class="day" ng-repeat="day in detail.data.itinerary">
+
+                    <div class="date-box flag-box">
+                        <div class="flag-wrap">
+                            <span class="flag-pointer"></span>
+                        </div>
+                        <h4>DAY {{$index+1}}</h4>
+                        <span>{{detail.data.departure_date | date:$index}}{{day.city?'，'+day.city:''}}</span>
+                    </div>
+                    
+                    <div ng-if="day.desc" class="desc-box">
+                        <p>{{day.desc}}</p>
+                    </div>
+                    <!-- 地点 -->
+                    <div class="location-box" ng-repeat="location in day.locations">
+                        <h4>{{location.name?location.name:location.name_en}}</h4>
+                        <div class="card-wrap">
+                             <div ng-if="location.comment.images.length>0" class="list card">
+                                 <!-- 地点轮播 -->
+                                <div class="item item-body">
+                                    <ion-slide-box show-pager="{{location.comment.images.length>1?'true':'false'}}">
+                                        <ion-slide ng-repeat="image in location.comment.images" style="background-image:url({{'http://img.chufaba.me/'+image}})">
+                                        </ion-slide>
+                                    </ion-slide-box>
+                                    <p>{{location.comment.desc}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 结尾 -->
+                <div class="end">
+                    <div class="date-box flag-box">
+                        <div class="flag-wrap">
+                            <span class="flag-pointer"></span>
+                        </div>
+                        <h4>THE END</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </ion-scroll>
+    <!--</ion-content>-->
 </ion-view>

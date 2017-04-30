@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-23 19:14:18 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-24 23:04:46
+ * @Last Modified time: 2017-04-28 14:53:47
  */
 
 /**
@@ -33,6 +33,7 @@ class Config {
 const activityPoster = `http://img.chufaba.me/events/e3d11e3218c1a9102a0848ff54ad4a17n.jpg`;
 // 开发环境
 const config = new Config({
+    host:'192.168.31.59',
     activityPoster
 });
 // 生产环境

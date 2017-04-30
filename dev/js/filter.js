@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-24 15:25:00 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-24 21:19:42
+ * @Last Modified time: 2017-04-28 03:36:35
  */
 
 angular.module('Chufaba').filter('imageSize',()=>{
@@ -26,5 +26,24 @@ angular.module('Chufaba').filter('imageSize',()=>{
     return (str)=>{
         // 正则替换
         return `— · ${str.replace(/(、)/g,' · ')} · —`;
+    }
+}).filter('date',()=>{
+    // 处理时间，带星期
+    return (dateStr,index)=>{
+        const date = new Date(dateStr);
+        date.setDate(date.getDate()+index);
+        const week = date.getDay();
+        let weekStr = '';
+        switch(week){
+            case 0: weekStr = '周日';break;
+            case 1: weekStr = '周一';break;
+            case 2: weekStr = '周二';break;
+            case 3: weekStr = '周三';break;
+            case 4: weekStr = '周四';break;
+            case 5: weekStr = '周五';break;
+            case 6: weekStr = '周六';break;
+            default: '不详';
+        }
+        return `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()}，${weekStr}`;
     }
 });
