@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-15 19:52:03 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-30 23:08:26
+ * @Last Modified time: 2017-05-02 00:58:42
  */
 
 'use strict';
@@ -36,6 +36,15 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                     controller: 'GoodDetailController'
                 }
             }
+        }).state('tab.home-web', {
+            // home webView
+            url: '/web:url',
+            views: {
+                'tab-home': {
+                    templateUrl: 'views/public/web.html',
+                    controller: 'WebController'
+                }
+            }
         }).state('tab.destination', {
             // 目的地
             url: '/destination',
@@ -43,6 +52,15 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                 'tab-destination': {
                     templateUrl: 'views/tabs/tab-destination.html',
                     controller: 'DestinationController'
+                }
+            }
+        }).state('tab.destination-web', {
+            // destination webView
+            url: '/web:url',
+            views: {
+                'tab-destination': {
+                    templateUrl: 'views/public/web.html',
+                    controller: 'WebController'
                 }
             }
         }).state('tab.buy', {
@@ -54,6 +72,15 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                     controller: 'BuyController'
                 }
             }
+        }).state('tab.buy-web', {
+            // buy webView
+            url: '/web:url:title',
+            views: {
+                'tab-buy': {
+                    templateUrl: 'views/public/web.html',
+                    controller: 'WebController'
+                }
+            }
         }).state('tab.account', {
             // 我的
             url: '/me',
@@ -63,7 +90,16 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
                     controller: 'MeController'
                 }
             }
-        })
+        }).state('tab.me-web', {
+            // me webView
+            url: '/web:url',
+            views: {
+                'tab-me': {
+                    templateUrl: 'views/public/web.html',
+                    controller: 'WebController'
+                }
+            }
+        });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise(localStorage['guided'] ? '/tab/home' : '/guide');
     }

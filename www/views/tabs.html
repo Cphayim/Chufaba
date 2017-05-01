@@ -22,7 +22,7 @@ navigation history that also transitions its views in and out.
     </ion-tabs>
     <script id="login.html" type="text/ng-template">
         <!-- 登录/注册 模态框 -->
-        <div class="modal login-modal" ng-controller="loginController">
+        <div class="modal login-modal" ng-controller="loginModelController">
             <ion-header-bar class="">
                 <a class="button button-clear button-positive" ng-click="isRegister?toLogin():loginModal.hide()">
                     <i class="ion" ng-class="{'ion-close-round':!isRegister,'ion-chevron-left':isRegister}"></i>
@@ -32,7 +32,7 @@ navigation history that also transitions its views in and out.
                     注册
                 </a>
             </ion-header-bar>
-            <ion-content>
+            <ion-content ng-controller="formController">
                 <div class="box-wrap" ng-class="{step:isRegister}">
                     <div class="login-box box">
                         <!-- 登录表单 -->

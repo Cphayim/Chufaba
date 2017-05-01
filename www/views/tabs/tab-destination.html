@@ -1,3 +1,9 @@
 <ion-view view-title="目的地">
-    
+    <ion-content>
+        <ion-slide-box>
+            <ion-slide ng-repeat="d in data">
+                <h1>{{d}}</h1>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
 </ion-view>

@@ -60,6 +60,10 @@ $greenMainColor:#67c99c;
     fill: $greenMainColor;
 }
 
+// 轮播计数器
+.slider-pager .slider-pager-page{
+    font-size: 12px;color: #fff;
+}
 // 混合宏定义
 // 模糊处理
 @mixin filter-blur($blur:5px) {
@@ -78,5 +82,6 @@ $greenMainColor:#67c99c;
 // scss 样式模块导入
 @import "dev/scss/modules/guide/guide";
 @import "dev/scss/modules/tabs/tab-home";
+@import "dev/scss/modules/tabs/tab-buy";
 @import "dev/scss/modules/detail/good";
 @import "dev/scss/modules/modal/modal";

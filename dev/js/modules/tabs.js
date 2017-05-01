@@ -6,6 +6,7 @@ angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', 
          * navStyle: 是否使用透明背景的导航栏 
          */
         const viewConfig = {
+            // 首页
             'tab.home': {
                 tab: true,
                 navStyle: false
@@ -13,6 +14,37 @@ angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', 
             'tab.good-detail': {
                 tab: false,
                 navStyle: true
+            },
+            'tab.home-web': {
+                tab: false,
+                navStyle: false
+            },
+            // 目的地
+            'tab.destination': {
+                tab: true,
+                navStyle: false
+            },
+            'tab.destination-web': {
+                tab: false,
+                navStyle: false
+            },
+            // 购买
+            'tab.buy': {
+                tab: true,
+                navStyle: false
+            },
+            'tab.buy-web': {
+                tab: false,
+                navStyle: false
+            },
+            // 我的
+            'tab.me': {
+                tab: true,
+                navStyle: false
+            },
+            'tab.me-web': {
+                tab: false,
+                navStyle: false
             }
         }
         // 监听视图加载完毕准备进入时
@@ -26,15 +58,12 @@ angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', 
         $rootScope.$on('$ionicView.beforeLeave', function (e, data) {
             // console.log(data.stateName+'准备离开');
         });
+
         // 登录模态框
         $ionicModal.fromTemplateUrl('login.html', {
             scope: $scope
         }).then(function (modal) {
             $scope.loginModal = modal;
-            setTimeout(function () {
-                $scope.loginModal.show()
-                console.log($scope);
-            }, 1000);
         });
     }
 ]);
