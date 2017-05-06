@@ -2,7 +2,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-18 21:33:38 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-05-01 22:12:19
+ * @Last Modified time: 2017-05-02 01:38:11
  */
 // Home 界面控制器
 angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBoxDelegate', '$cordovaToast', '$http', '$state',
@@ -26,10 +26,10 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
         $scope.good = new RefreshComponent({
             scope: $scope,
             path: '/product/good-list',
-            data:{
-                items:[]
+            data: {
+                items: []
             },
-            reset(){
+            reset() {
                 this.data.items.length = 0;
             },
             loadData() {
@@ -59,7 +59,9 @@ angular.module('Chufaba').controller('HomeController', ['$scope', '$ionicSlideBo
         });
         $scope.good.data.banner = {
             // 将配置文件中的主题 banner 挂载到数据容器
-            image: config.activityPoster
+            title: config.activityPoster.title,
+            image: config.activityPoster.image,
+            url: config.activityPoster.url
         };
     }
 ]).service('HomeService', []);

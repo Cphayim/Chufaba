@@ -3,12 +3,14 @@
  * @Author: Cphayim 
  * @Date: 2017-05-01 01:22:22 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-05-01 23:22:27
+ * @Last Modified time: 2017-05-02 21:23:47
  */
 
 angular.module('Chufaba').controller('BuyController', ['$scope', '$http','$cordovaToast',
     ($scope, $http,$cordovaToast) => {
-        $scope.data = [1,2,3,4]
+        $scope.data = [1,2,3,4];
+        // 从测量元素获得宽度值设置到 sprite 的高度
+        $scope.spriteHeight = $('.market .measure .sprite').width()+'px'; 
         // 实例化一个刷新组件
         $scope.market = new RefreshComponent({
             scope: $scope,
@@ -37,6 +39,9 @@ angular.module('Chufaba').controller('BuyController', ['$scope', '$http','$cordo
                     $cordovaToast.showShortCenter('数据请求失败，请检查网络');
                 });
             }
+        });
+        $scope.$on('$ionicView.afterEnter', function () {
+            
         });
     }
 ]);

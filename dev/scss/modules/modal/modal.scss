@@ -17,12 +17,17 @@
         .box{
             position: absolute;
             width: 100%;height: 100%;
+            input{
+                font-size: 16px;
+                height: 40px;
+                line-height: 40px;
+            }
             .item-input{
                 padding-left: 0;
                 border: none;
                 background: none;
                 input{
-                    border-bottom: 0.5px solid #e0e0e0;
+                    border-bottom: 1px solid #e0e0e0;
                     color: #fff;font-size:16px;
                     &::-webkit-input-placeholder{
                         color: #e0e0e0;
@@ -51,6 +56,37 @@
             padding: 40px 30px;
             height: 200px;
             transform: translate3d(100%,0,0);
+            .item-input-inset{
+                padding: 0;
+                background: none;
+                border: none;
+                .item-input-wrapper{
+                    position: relative;
+                    padding: 6px 0;
+                    background:none;
+                    input{
+                        width: 100%;
+                        border-bottom: 1px solid #e0e0e0;
+                        color: #fff;font-size:16px;
+                        &::-webkit-input-placeholder{
+                            color: #e0e0e0;
+                        }
+                    }
+                    .icon{
+                        position: absolute;right: 0;
+                        color: #fff;font-size: 20px;
+                    }
+                }
+                .button{
+                    color: $greenMainColor;
+                    &[disabled]{
+                        opacity: 0.7;
+                    }
+                    &.activated{
+                        border: none;
+                    }
+                }
+            }
         }
     }
 }

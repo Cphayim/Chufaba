@@ -1,14 +1,59 @@
 <ion-view view-title="购买">
     <ion-content class="market">
         <ion-refresher spinner="bubbles" pulling-text="下拉刷新" on-refresh="market.refresh()"></ion-refresher>
+        <!-- 顶部轮播 -->
         <!-- 这里必须加 ng-if 判断条件，等到有数据再渲染轮播。否则会因为生成 DOM 时 没有数据导致轮播宽度是 0 -->
+        <div class="slider-wrap">
         <ion-slide-box ng-if="market.data.banners" active-slide="myActiveSlide" does-continue="true" auto-play="true" slide-interval="3000">
             <ion-slide ng-repeat="banner in market.data.banners">
-                <a ui-sref="tab.buy-web({url:banner.url,title:banner.title})">
-                    <img ng-src="{{banner.image}}" alt="{{banner.title}}">
+                <a ui-sref="tab.buy-web({url:banner.url,title:banner.title})" title="{{banner.title}}" style="background-image:url({{banner.image}})">
                 </a>
             </ion-slide>
         </ion-slide-box>
+        </div>
+        <!-- 导航 -->
+        <nav class="buy-nav clearfix">
+            <div class="cell measure"><a ui-sref="tab.buy-web({url:market.data.destinations[0].url,title:market.data.destinations[0].title})">
+                    <div class="sprite sprite-1" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[0].title}}</span>
+                </a></div>
+            <div class="cell"><a ui-sref="tab.buy-web({url:market.data.destinations[1].url,title:market.data.destinations[1].title})">
+                    <div class="sprite sprite-2" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[1].title}}</span>
+                </a></div>
+            <div class="cell"><a ui-sref="tab.buy-web({url:market.data.destinations[2].url,title:market.data.destinations[2].title})">
+                    <div class="sprite sprite-3" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[2].title}}</span>
+                </a></div>
+            <div class="cell"><a ui-sref="tab.buy-web({url:market.data.destinations[3].url,title:market.data.destinations[3].title})">
+                    <div class="sprite sprite-4" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[3].title}}</span>
+                </a></div>
+            <div class="cell"><a ui-sref="tab.buy-web({url:market.data.destinations[4].url,title:market.data.destinations[4].title})">
+                    <div class="sprite sprite-5" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[4].title}}</span>
+                </a></div>
+            <div class="cell"><a ui-sref="tab.buy-web({url:market.data.destinations[5].url,title:market.data.destinations[5].title})">
+                    <div class="sprite sprite-6" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[5].title}}</span>
+                </a></div>
+            <div class="cell"><a ui-sref="tab.buy-web({url:market.data.destinations[6].url,title:market.data.destinations[6].title})">
+                    <div class="sprite sprite-7" ng-style="{height:spriteHeight}"></div>
+                    <span>{{::market.data.destinations[6].title}}</span>
+                </a></div>
+            <div class="cell"><a>
+                    <div class="sprite sprite-8" ng-style="{height:spriteHeight}"></div>
+                    <span>更多</span>
+                </a></div>
+        </nav>
+        <div class="product-box">
+            <h4>独家定制</h4>
+            <div id="{{product.product_id}}" class="product-cell" ng-repeat="product in market.data.products track by product.product_id">
+                <a ui-sref="tab.buy-web({url:product.url,title:product.title})" title="{{product.title}}" 
+                    data-city="{{product.city}}" data-category="{{product.category}}" data-price="{{product.price}}"
+                    style="background-image:url({{product.image}})"></a>
+            </div>
+        </div>
         <ion-infinite-scroll spinner="lines" ng-if="market.showInfinite" on-infinite="market.infinite()" distance="1%"></ion-infinite-scroll>
     </ion-content>
 </ion-view>

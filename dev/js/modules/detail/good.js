@@ -3,11 +3,10 @@
  * @Author: Cphayim 
  * @Date: 2017-04-24 21:29:47 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-28 22:14:59
+ * @Last Modified time: 2017-05-02 22:33:48
  */
 angular.module('Chufaba').controller('GoodDetailController', ['$scope', '$stateParams', '$ionicLoading', '$http',
     ($scope, $stateParams, $ionicLoading, $http) => {
-
         // 显示加载框
         // $ionicLoading.show();
         // 滚动区域下拉顶端图片放大效果
@@ -22,7 +21,7 @@ angular.module('Chufaba').controller('GoodDetailController', ['$scope', '$stateP
             const absTranslateY = Math.abs(translateY);
             let alpha = 0;
             if (absTranslateY > innerHeight * 0.3) {
-                alpha = (absTranslateY - innerHeight * 0.3) / 100;
+                alpha = ((absTranslateY - innerHeight * 0.3) / 100).toFixed(2);
             } else {
                 alpha = 0;
             }
@@ -95,6 +94,5 @@ angular.module('Chufaba').controller('GoodDetailController', ['$scope', '$stateP
         $scope.$on('$ionicView.afterEnter', function () {
             $scope.detail.loadData();
         });
-
     }
 ]);

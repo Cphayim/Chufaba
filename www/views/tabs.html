@@ -26,9 +26,10 @@ navigation history that also transitions its views in and out.
             <ion-header-bar class="">
                 <a class="button button-clear button-positive" ng-click="isRegister?toLogin():loginModal.hide()">
                     <i class="ion" ng-class="{'ion-close-round':!isRegister,'ion-chevron-left':isRegister}"></i>
+                    {{!isRegister?'关闭':'登录'}}
                 </a>
                 <h1 class="title" ng-bind="isRegister?'注册账户':'登录账户'"></h1>
-                <a ng-if="!isRegister" class="button button-clear button-positive" ng-click="toRegister()">
+                <a ng-show="!isRegister" class="button button-clear button-positive" ng-click="toRegister()">
                     注册
                 </a>
             </ion-header-bar>
@@ -36,9 +37,9 @@ navigation history that also transitions its views in and out.
                 <div class="box-wrap" ng-class="{step:isRegister}">
                     <div class="login-box box">
                         <!-- 登录表单 -->
-                        <form novalidate name="loginForm" ng-submit="loginSubmit()">
+                        <form novalidate name="loginForm" ng-submit="loginSubmit($event)">
                             <label class="item item-input">
-                                <input type="text" name="phone" ng-model="user.phone" pattern="^(13|14|15|18)[0-9]{9}$" required placeholder="手机号码" autocomplete="off" >
+                                <input type="text" name="phone" ng-model="loginData.phone" pattern="^0?(13|14|15|18)[0-9]{9}$" required placeholder="手机号码" autocomplete="off" >
                                 <!-- 输入框脏值(input事件)即开始显示当前表单控件验证状态: valid(笑脸)/invalid(哭脸)-->
                                 <i ng-class="{
                                     'ion-android-sad':loginForm.phone.$invalid&&loginForm.phone.$dirty,
@@ -47,18 +48,13 @@ navigation history that also transitions its views in and out.
                                 class="icon"></i>
                             </label>
                             <label class="item item-input">
-                                <input type="password" name="password" ng-model="password" required placeholder="密码">
+                                <input type="password" name="password" ng-model="loginData.password" required placeholder="密码">
                                 <i ng-class="{
                                     'ion-android-sad':loginForm.password.$invalid&&loginForm.password.$dirty,
                                     'ion-android-happy': loginForm.password.$valid&&loginForm.password.$dirty
                                 }" 
                                 class="icon"></i>
                             </label>
-                            <!-- 输入框首次失焦(blur事件)开始显示未通过的验证提示，每次只显示最上面的一条 -->
-                            <div>
-                                <span>{{password}}</span>
-                                <span>{{$id}}</span>
-                            </div>
                             <div class="bot">
                                 <input class="button button-block" type="submit" ng-disabled="loginForm.$invalid" value="登录">    
                             </div>
@@ -66,18 +62,54 @@ navigation history that also transitions its views in and out.
                     </div>
                     <div class="register-box box">
                         <!-- 注册表单 -->
-                        <form novalidate name="registerForm" ng-submit="registerSubmit()">
+                        <form novalidate name="registerForm" ng-submit="registerSubmit($event)" >
+                            <div class="item item-input-inset">
+                                <label class="item-input-wrapper">
+                                    <input type="text" name="phone" ng-disabled="vCodeBtnDis" ng-model="registerData.phone" ng-pattern="/^0?(13|14|15|18)[0-9]{9}$/" required placeholder="手机号码（国内）" autocomplete="off">
+                                    <i class="icon" ng-class="{'ion-locked':vCodeBtnDis}"></i>
+                                </label>
+                                <button type="button" ng-disabled="vCodeBtnDis || registerForm.phone.$invalid" ng-click="getVCode()" ng-bind="vCodeBtnDis?vCodeTime+'秒后重新获取':'获取验证码'" class="button button-small"></button>
+                            </div>
                             <label class="item item-input">
-                                <input type="text" placeholder="手机号码" >
+                                <input type="text" name="vCode" ng-model="registerData.vCode" ng-pattern="/^\d{6}$/" required placeholder="短信验证码" autocomplete="off" >
+                                <i ng-class="{
+                                    'ion-android-sad':registerForm.vCode.$invalid&&registerForm.vCode.$dirty,
+                                    'ion-android-happy': registerForm.vCode.$valid&&registerForm.vCode.$dirty
+                                }" 
+                                class="icon"></i>
                             </label>
                             <label class="item item-input">
-                                <input type="password" placeholder="密码">
+                                <input type="text" name="username" ng-model="registerData.username" ng-pattern="/^[A-Za-z0-9\u4e00-\u9fa5]{2,16}$/" required placeholder="昵称（2~16位/中文/字母/数字）" autocomplete="off" >
+                                <i ng-class="{
+                                    'ion-android-sad':registerForm.username.$invalid&&registerForm.username.$dirty,
+                                    'ion-android-happy': registerForm.username.$valid&&registerForm.username.$dirty
+                                }" 
+                                class="icon"></i>
                             </label>
+                            <label class="item item-input">
+                                <input type="password" name="password" ng-model="registerData.password" ng-pattern="/^.{8,}$/" required placeholder="密码（不小于8位）">
+                                <i ng-class="{
+                                    'ion-android-sad':registerForm.password.$invalid&&registerForm.password.$dirty,
+                                    'ion-android-happy': registerForm.password.$valid&&registerForm.password.$dirty
+                                }" 
+                                class="icon"></i>
+                            </label>
+                            <label class="item item-input">
+                                <input type="password" name="confirm" ng-model="confirm" required placeholder="确认密码">
+                                <i ng-class="{
+                                    'ion-android-sad': (registerForm.confirm.$invalid || confirm != registerData.password) && registerForm.confirm.$dirty,
+                                    'ion-android-happy': registerForm.confirm.$valid && confirm == registerData.password && registerForm.confirm.$dirty
+                                }" 
+                                class="icon"></i>
+                            </label>
+                            <!-- 输入框首次失焦(blur事件)开始显示未通过的验证提示，每次只显示最上面的一条 -->
                             <div class="bot">
-                                <input class="button button-block" type="submit" ng-disabled="registerForm.$invalid" value="注册">    
+                                <input class="button button-block" type="submit"
+                                ng-disabled="registerForm.$invalid || confirm != registerData.password " value="注册">    
                             </div>
                         </form>
                     </div>
+
                 </div>
             </ion-content>
         </div>

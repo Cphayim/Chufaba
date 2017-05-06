@@ -34,10 +34,12 @@
                 <ion-refresher spinner="bubbles" pulling-text="下拉刷新" on-refresh="good.refresh()"></ion-refresher>
                 <!-- 精选头图 -->
                 <div class="top-banner">
-                	<img ng-src="{{good.data.banner.image}}"/>
+                    <a ui-sref="tab.home-web({url:good.data.banner.url,title:good.data.banner.title})">
+                	    <img ng-src="{{good.data.banner.image}}"/>
+                    </a>
                 </div>
                 <!-- 精选项 -->
-                <div class="good-item" ng-repeat="item in good.data.items">
+                <div class="good-item" ng-repeat="item in good.data.items track by item.id">
                     <!--nav-transition="ios" nav-direction="forward" -->
                 	<a id="{{item.id}}" data-hot="{{item.hot}}" ui-sref="tab.good-detail({id:item.id})" style="background-image: url({{item.background_image | imageSize}});">
                         <!-- 20% 遮罩层 -->

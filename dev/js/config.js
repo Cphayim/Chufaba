@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-23 19:14:18 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-04-28 14:53:47
+ * @Last Modified time: 2017-05-06 17:37:42
  */
 
 /**
@@ -13,7 +13,7 @@
  *         host = '127.0.0.1', // 主机名，默认本地
  *         port = '3000', // 端口号，默认3000
  *         ssl = false, // 传输协议是否包含安全套接层
- *         activityPoster = '' // 活动海报的 imageUrl
+ *         activityPoster = '' // 版本活动信息
  *     } 
  */
 class Config {
@@ -30,10 +30,14 @@ class Config {
         this.activityPoster = activityPoster;
     }
 }
-const activityPoster = `http://img.chufaba.me/events/e3d11e3218c1a9102a0848ff54ad4a17n.jpg`;
+const activityPoster ={
+    title:'享受得起的定制旅行',
+    image:`http://img.chufaba.me/events/e3d11e3218c1a9102a0848ff54ad4a17n.jpg`,
+    url:'http://chufaba.me/activities/23'
+};
 // 开发环境
 const config = new Config({
-    host:'192.168.31.59',
+    host:'127.0.0.1',
     activityPoster
 });
 // 生产环境

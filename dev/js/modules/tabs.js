@@ -63,7 +63,16 @@ angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', 
         $ionicModal.fromTemplateUrl('login.html', {
             scope: $scope
         }).then(function (modal) {
-            $scope.loginModal = modal;
+            // 将登录框绑定到全局
+            $rootScope.loginModal = modal;
+            $rootScope.$on('showLoginModal',(e)=>{
+                $scope.loginModal.show();
+            });
+            $rootScope.$on('hideLoginModal',(e,isBroadcast)=>{
+                $scope.loginModal.hide();
+                // 更新 用户 视图
+                // isBroadcast&&
+            });
         });
     }
 ]);

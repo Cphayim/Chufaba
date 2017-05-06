@@ -1,7 +1,63 @@
 .market{
+    .slider-wrap{
+        height: 25vh;
+    }
     .slider-slide{
-        img{
-            width: 100%;
+        line-height: 0;
+        a{
+            display: block;
+            height: 25vh;
+            background-size: cover;
+            background-position: 50%;
+        }
+    }
+    .buy-nav{
+        padding: 10px 15px;
+        border-bottom: 1px solid #e0e0e0;
+        .cell{
+            float: left;
+            width: 25%;padding: 5px 15px;
+            text-align: center;
+            a{
+                text-decoration: none;
+                color: #444;
+            }
+            .sprite{
+                width: 100%; height: 50px;
+                background-image: url('../img/buy-sprite.png');
+                background-size: 800% 100%;
+            }
+            @for $i from 0 through 7{
+                .sprite-#{$i+1}{
+                    background-position: -100%*$i 0%;
+                }
+            }
+            span{
+                display: block;
+                padding-top: 5px;
+                line-height: 1.5;
+                font-size: 1.9vh;
+            }
+        }
+        .measure{
+            // display:none;
+        }
+    }
+    .product-box{
+        padding: 10px;
+        text-align: center;
+        h4{
+            font-weight: 400;color: #444;
+        }
+        .product-cell{
+            padding: 5px 0;
+            a{
+                display: block;
+                height: 30vh;
+                border-radius: 5px;
+                background-size: cover;
+                background-position: 50%;
+            }
         }
     }
 }

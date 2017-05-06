@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-15 19:52:03 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-05-02 00:58:42
+ * @Last Modified time: 2017-05-02 01:34:20
  */
 
 'use strict';
@@ -38,7 +38,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
             }
         }).state('tab.home-web', {
             // home webView
-            url: '/web:url',
+            url: '/web:url:title',
             views: {
                 'tab-home': {
                     templateUrl: 'views/public/web.html',
@@ -56,7 +56,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
             }
         }).state('tab.destination-web', {
             // destination webView
-            url: '/web:url',
+            url: '/web:url:title',
             views: {
                 'tab-destination': {
                     templateUrl: 'views/public/web.html',
@@ -92,7 +92,7 @@ angular.module('myRouter', ['ionic']).config(['$stateProvider', '$urlRouterProvi
             }
         }).state('tab.me-web', {
             // me webView
-            url: '/web:url',
+            url: '/web:url:title',
             views: {
                 'tab-me': {
                     templateUrl: 'views/public/web.html',
