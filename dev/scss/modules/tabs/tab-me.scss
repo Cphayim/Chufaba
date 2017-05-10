@@ -1,0 +1,77 @@
+.v-me {
+    .user-box {
+        padding: 10px;
+        display: flex;
+        border-bottom: 1px solid #e0e0e0;
+        .user-avatar{
+            flex: 2;
+            padding: 0 10px;
+            img{
+                display: block;
+                width: 100%;
+                border: 2px solid $darkMainColor;
+                border-radius: 50%;
+                padding: 5px;
+            }
+        }
+        .user-info-wrap{
+            flex: 7;
+            .not-login{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                // align-items: center;
+                height: 100%;padding: 15px;
+                a{
+                    display: block;
+                    font-size: 16px;
+                    color: #444;
+                    text-decoration: none;
+                }
+                p{
+                    margin: 5px 0;
+                    font-size: 13px;
+                    color: #888;
+                }
+            }
+            .user-info,.logout{
+                height: 100%;
+            }
+            .user-info{
+                display: flex;
+                align-items: center;
+                .info{
+                    flex: 2;
+                    padding: 10px;
+                    h4{
+                        font-size: 16px;
+                        margin: 0;
+                    }
+                    p{
+                        margin: 5px 0;
+                        font-size: 13px;
+                    }
+                }
+                .logout{
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    button{
+                        width: 100%;
+                        border: 1px solid $greenMainColor;
+                        color: $greenMainColor;
+                        font-size: 12px;
+                        line-height: 24px;
+                        background: none;
+                        transition: all 0.2s;
+                        &:active{
+                            color: #fff;
+                            background-color: $greenMainColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

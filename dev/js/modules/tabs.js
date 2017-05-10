@@ -1,5 +1,5 @@
-angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', '$ionicTabsDelegate', '$ionicModal',
-    ($scope, $rootScope, $ionicTabsDelegate, $ionicModal) => {
+angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', '$ionicTabsDelegate', '$ionicModal', '$http', '$cordovaToast',
+    ($scope, $rootScope, $ionicTabsDelegate, $ionicModal, $http, $cordovaToast) => {
         // 视图配置项
         /* {Boolean}
          * tab: 控制是否显示底部 tab 栏
@@ -65,14 +65,55 @@ angular.module('Chufaba').controller('TabsController', ['$scope', '$rootScope', 
         }).then(function (modal) {
             // 将登录框绑定到全局
             $rootScope.loginModal = modal;
-            $rootScope.$on('showLoginModal',(e)=>{
+            $rootScope.$on('showLoginModal', (e) => {
                 $scope.loginModal.show();
             });
-            $rootScope.$on('hideLoginModal',(e,isBroadcast)=>{
+            $rootScope.$on('hideLoginModal', (e, isBroadcast) => {
                 $scope.loginModal.hide();
-                // 更新 用户 视图
-                // isBroadcast&&
+                // 检查登录状态
+                isBroadcast && loginCheck(); 
             });
         });
+
+        loginCheck();
+        // 登录状态检查事件
+        $rootScope.$on('loginCheck', (e) => {
+            loginCheck();
+        });
+        /**
+         * 检查登录状态，更新全局用户信息
+         */
+        function loginCheck() {
+            // 本地存储读取用户信息
+            $rootScope.userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
+            // 登录状态确认
+            $rootScope.isLogin = $rootScope.userInfo?accessTokenCheck():false;
+        }
+        /**
+         * accessToken 校验
+         */
+        function accessTokenCheck() {
+            // 本地不存在 access_token
+            if (!$rootScope.userInfo.access_token || !$rootScope.userInfo.phone) {
+                $rootScope.isLogin = false;
+                return false;
+            }
+            const data = {
+                phone: $rootScope.userInfo.phone,
+                access_token: $rootScope.userInfo.access_token
+            }
+
+            $http.post(`${config.serverUrl}/user/token`, data).then(resData => {
+                if (resData.data.code === 1000) {
+                    $rootScope.isLogin = true;
+                } else {
+                    $rootScope.isLogin = false;
+                    $cordovaToast.showShortBottom('鉴权失败，请重新登录');
+                }
+            }).catch(resData => {
+                $rootScope.isLogin = false;
+                $cordovaToast.showShortBottom('连接失败，请检查网络');
+            });
+        }
     }
 ]);

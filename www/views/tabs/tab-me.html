@@ -1,3 +1,25 @@
-<ion-view view-title="我的">
-    
+<ion-view class="v-me" view-title="我的">
+    <ion-content>
+        <div class="user-box">
+            <div class="user-avatar">
+                <img ng-if="!$root.isLogin" ng-src="/avatar/not_login.png" alt="">
+                <img ng-if="$root.isLogin" ng-src="{{$root.userInfo.avatar}}" alt="">
+            </div>
+            <div class="user-info-wrap">
+                <div ng-if="$root.isLogin" class="user-info">
+                    <div class="info">
+                        <h4>{{$root.userInfo.username}}</h4>    
+                        <p>{{$root.userInfo.phone}}</p>
+                    </div>
+                    <div class="logout">
+                        <button ng-click="logout()">退出登录</button>
+                    </div>
+                </div>
+                <div ng-if="!$root.isLogin" ng-click="openLogin()" class="not-login">
+                    <a>点击登录</a>
+                    <p>新用户登录立即领取 ￥50 代金券</p>
+                </div>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>

@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-24 21:29:47 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-05-02 22:33:48
+ * @Last Modified time: 2017-05-09 01:10:59
  */
 angular.module('Chufaba').controller('GoodDetailController', ['$scope', '$stateParams', '$ionicLoading', '$http',
     ($scope, $stateParams, $ionicLoading, $http) => {
@@ -15,11 +15,13 @@ angular.module('Chufaba').controller('GoodDetailController', ['$scope', '$stateP
         $scope.topImageSize = function () {
             const transform = document.querySelector('#good-detail .scroll').style.transform;
             const translateY = Number(transform.split(', ')[1].replace('px', ''));
+            // 当滚动容器到达顶部并继续向上滚动时放大顶部的背景图片
             if (translateY >= 0) {
                 $('.back-image').css('transform', `scale(${translateY/300+1})`);
             }
             const absTranslateY = Math.abs(translateY);
             let alpha = 0;
+            // 当屏幕滚动距离超过30%屏幕高度时调整导航的透明度
             if (absTranslateY > innerHeight * 0.3) {
                 alpha = ((absTranslateY - innerHeight * 0.3) / 100).toFixed(2);
             } else {
@@ -88,9 +90,11 @@ angular.module('Chufaba').controller('GoodDetailController', ['$scope', '$stateP
                 });
             }
         });
+        // 视图模板加载完毕时显示等待框
         $scope.$on('$ionicView.loaded', function () {
             $ionicLoading.show();
         });
+        // 视图进入时请求数据
         $scope.$on('$ionicView.afterEnter', function () {
             $scope.detail.loadData();
         });

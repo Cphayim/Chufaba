@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-23 19:14:18 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-05-06 17:37:42
+ * @Last Modified time: 2017-05-09 18:12:43
  */
 
 /**
@@ -37,7 +37,7 @@ const activityPoster ={
 };
 // 开发环境
 const config = new Config({
-    host:'127.0.0.1',
+    host:'192.168.1.108',
     activityPoster
 });
 // 生产环境
