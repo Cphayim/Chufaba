@@ -3,7 +3,7 @@
  * @Author: Cphayim 
  * @Date: 2017-04-30 22:12:01 
  * @Last Modified by: Cphayim
- * @Last Modified time: 2017-05-09 18:16:24
+ * @Last Modified time: 2017-05-17 15:02:56
  */
 angular.module('Chufaba').controller('loginModelController', ['$scope',
     ($scope) => {
@@ -91,11 +91,11 @@ angular.module('Chufaba').controller('loginModelController', ['$scope',
                 $http.post(`${config.serverUrl+routerName}/login`, data)
                     .then(resData => {
                         $ionicLoading.hide();
-                        loginResult(resData.data)
+                        loginResult(resData.data);
                     })
                     .catch(resData => {
                         $ionicLoading.hide();
-                        $cordovaToast.showShortBottom('连接失败，请检查网络')
+                        $cordovaToast.showShortBottom('连接失败，请检查网络');
                     });
             }, 500);
         }
